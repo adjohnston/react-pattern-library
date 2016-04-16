@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/adjohnston/react-pattern-library/issues"
   },
-  "homepage": "https://github.com/adjohnston/react-pattern-library#readme"
+  "homepage": "https://github.com/adjohnston/react-pattern-library#readme",
+  "devDependencies": {
+    "jspm": "^0.16.33"
+  }
 }
