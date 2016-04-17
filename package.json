@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/adjohnston/react-pattern-library#readme",
   "devDependencies": {
+    "file": "^0.2.2",
     "jspm": "^0.16.33",
     "minimist": "^1.2.0"
   },
