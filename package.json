@@ -18,9 +18,9 @@
   "homepage": "https://github.com/adjohnston/react-pattern-library#readme",
   "devDependencies": {
     "globby": "^4.0.0",
-    "json-front-matter": "^1.0.0",
     "jspm": "^0.16.33",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "yaml-front-matter": "^3.4.0"
   },
   "jspm": {
     "dependencies": {
