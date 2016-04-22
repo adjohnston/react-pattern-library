@@ -32,3 +32,7 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Ignore generated app files
+app/components.js
+app/fixtures.js
