@@ -6,8 +6,8 @@ const args = require('minimist')(process.argv.splice(2))
 const compDir = args.components || '.'
 const storyDir = args.stories || ''
 
-//    _getFileNameFromPath : string -> string
-const _getFileNameFromPath = () => {
+//    getFileNameFromPath : string -> string
+const getFileNameFromPath = () => {
   var memo = {}
 
   return path => {
@@ -18,8 +18,8 @@ const _getFileNameFromPath = () => {
   }
 }()
 
-//    _getComponent : string -> promise
-const _getComponent = path => {
+//    getComponent : string -> promise
+const getComponent = path => {
   return new Promise((res, rej) => {
     const componentsPath = `copied-components/${path}`
 
@@ -31,8 +31,8 @@ const _getComponent = path => {
   })
 }
 
-//    _getStory : string -> promise
-const _getStory = path => {
+//    getStory : string -> promise
+const getStory = path => {
   return new Promise((res, rej) => {
     fs.readFile(path, 'utf8', (err, md) => {
       if (err) rej(err)
@@ -46,22 +46,22 @@ const _getStory = path => {
 }
 
 const getComponents = glob(`${compDir}/**/*.js*`).then(paths => {
-  Promise.all(paths.map(path => _getComponent(path)))
+  Promise.all(paths.map(path => getComponent(path)))
     .then((paths) => {
       debugger
       fs.writeFile('./app/components.js', `
         ${paths.map(path => {
-          return `import ${_getFileNameFromPath(path)} from '${path}'`
+          return `import ${getFileNameFromPath(path)} from '${path}'`
         }).join('\n\t\t')}
         const components = {
-          ${paths.map(path => _getFileNameFromPath(path))}
+          ${paths.map(path => getFileNameFromPath(path))}
         }
         export default components`)
     }).catch(err => console.log(err))
 })
 
 const getStories = glob([`${compDir}/${storyDir}/**/*.md`]).then(paths => {
-  Promise.all(paths.map(path => _getStory(path)))
+  Promise.all(paths.map(path => getStory(path)))
     .then(stories => {
       fs.writeFile('./app/fixtures.js', `
         const fixtures = {
