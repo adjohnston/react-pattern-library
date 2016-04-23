@@ -36,3 +36,4 @@ jspm_packages
 # Ignore generated app files
 app/components.js
 app/fixtures.js
+copied-components
