@@ -64,7 +64,7 @@ const getStories = glob([`${compDir}/${storyDir}/**/*.md`]).then(paths => {
     .then(stories => {
       fs.writeFile('./app/fixtures.js', `
         const fixtures = {
-          ${stories.map(story => story)}
+          ${stories}
         }
         export default fixtures`)
     }).catch(err => console.log(err))
