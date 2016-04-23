@@ -1,7 +1,15 @@
 ---
 Button:
   -
-    header: 'Testing'
+    header: 'Primary Button'
+    props:
+      className: 'primary'
+      children: 'A primary button'
   -
-    header: 'Something else'
+    header: 'Warning Button'
+    props:
+      className: 'warning'
+      children: 'Warning button'
 ---
+
+# Button
