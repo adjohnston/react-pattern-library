@@ -48,7 +48,6 @@ const getStory = path => {
 const getComponents = glob(`${compDir}/**/*.js*`).then(paths => {
   Promise.all(paths.map(path => getComponent(path)))
     .then((paths) => {
-      debugger
       fs.writeFile('./app/components.js', `
         ${paths.map(path => {
           return `import ${getFileNameFromPath(path)} from '${path}'`
