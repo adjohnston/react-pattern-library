@@ -21,7 +21,7 @@ const _getFileNameFromPath = () => {
 //    _getComponent : string -> promise
 const _getComponent = path => {
   return new Promise((res, rej) => {
-    const componentsPath = `copied-components${path}`
+    const componentsPath = `copied-components/${path}`
 
     fs.copy(path, componentsPath, (err) => {
       if (err) rej(err)
