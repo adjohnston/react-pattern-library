@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/adjohnston/react-pattern-library.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Adam Johnston",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/adjohnston/react-pattern-library/issues"
   },
