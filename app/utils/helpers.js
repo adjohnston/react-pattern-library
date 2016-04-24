@@ -4,4 +4,9 @@ const capitalise = (string) => {
   }).join(' ')
 }
 
-export { capitalise }
+//    hypenate : string -> string
+const hyphenate = (string) => {
+  return string.split(' ').reduce((acc, word) => `${acc}-${word}`)
+}
+
+export { capitalise, hyphenate }
