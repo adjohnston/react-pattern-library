@@ -6,6 +6,10 @@ const Patterns = props => {
 
   return (
     <div>
+      <header>
+        <h1>Components</h1>
+      </header>
+      
       {Object.keys(fixtures).map((fixture, i) => {
         return (
           <div key={i}>
