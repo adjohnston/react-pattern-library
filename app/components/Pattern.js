@@ -1,4 +1,5 @@
 import React from 'react'
+import Notes from './Notes'
 
 const Pattern = props => {
   const { header, children: Component } = props
