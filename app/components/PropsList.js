@@ -1,14 +1,24 @@
 import React, { createClass } from 'react'
 
 const PropsList = createClass({
-  render() {
-    const { propsList, onUpdateState } = this.props
+  getInitialState() {
+    return this.props.propsList || {}
+  },
 
+  handleUpdateState(e) {
+    const state = {}
+    state[e.target.dataset.key] = e.target.value
+
+    this.setState(state)
+    this.props.onUpdateState(e)
+  },
+
+  render() {
     return (
       <div>
         <h2>Props</h2>
 
-        {Object.keys(propsList).map((key, i) => {
+        {Object.keys(this.state).map((key, i) => {
           return (
             <code
               key={i}>
@@ -18,9 +28,9 @@ const PropsList = createClass({
 
               <input
                 type="text"
-                onChange={onUpdateState}
+                onChange={this.handleUpdateState}
                 data-key={key}
-                value={propsList[key]}>
+                value={this.state[key]}>
               </input>
 
               <br />
