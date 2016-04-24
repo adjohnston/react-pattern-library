@@ -62,10 +62,10 @@ const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
 const getStories = glob([`${storyDir}**/*.md`]).then(paths => {
   Promise.all(paths.map(path => getStory(path)))
     .then(stories => {
-      fs.writeFile('./app/fixtures.js', `
-        const fixtures = {
+      fs.writeFile('./app/stories.js', `
+        const stories = {
           ${stories}
         }
-        export default fixtures`)
+        export default stories`)
     }).catch(err => console.log(err))
 })

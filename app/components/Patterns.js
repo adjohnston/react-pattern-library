@@ -2,7 +2,7 @@ import React from 'react'
 import Pattern from './Pattern'
 
 const Patterns = props => {
-  const { fixtures, components } = props
+  const { stories, components } = props
 
   return (
     <div>
@@ -10,11 +10,11 @@ const Patterns = props => {
         <h1>Components</h1>
       </header>
 
-      {Object.keys(fixtures).map((fixture, i) => {
+      {Object.keys(stories).map((story, i) => {
         return (
           <div key={i}>
-            {fixtures[fixture].map((modifiers, i) => {
-              const Component = components[fixture]
+            {stories[story].map((modifiers, i) => {
+              const Component = components[story]
               const { header, props, notes } = modifiers
 
               return (

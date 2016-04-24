@@ -35,5 +35,5 @@ jspm_packages
 
 # Ignore generated app files
 app/components.js
-app/fixtures.js
+app/stories.js
 copied-components
