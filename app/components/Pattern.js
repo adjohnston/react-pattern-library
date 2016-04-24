@@ -12,6 +12,7 @@ const Pattern = createClass({
   handleUpdateState(e) {
     const state = {}
     state[e.target.dataset.key] = e.target.value
+
     this.setState(state)
   },
 
