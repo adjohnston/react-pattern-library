@@ -19,13 +19,13 @@ const Pattern = createClass({
   render() {
     const { header, notes, propsList, Component } = this.props
 
-    let PropsListComponent = propsList && (
+    const PropsListComponent = propsList && (
       <PropsList
         propsList={propsList}
         onUpdateState={this.handleUpdateState} />
     )
 
-    let NotesComponent = notes && (
+    const NotesComponent = notes && (
       <Notes
         notes={notes} />
     )
@@ -42,7 +42,7 @@ const Pattern = createClass({
         <div>
           <Component {...this.state} />
         </div>
-        
+
         {PropsListComponent}
         {NotesComponent}
       </div>
