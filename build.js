@@ -4,7 +4,7 @@ const yamlFront = require('yaml-front-matter')
 const args = require('minimist')(process.argv.splice(2))
 
 const compDir = args.components || '.'
-const storyDir = args.stories || ''
+const storyDir = args.stories || `${compDir}stories/`
 
 //    getFileNameFromPath : string -> string
 const getFileNameFromPath = () => {
@@ -45,7 +45,7 @@ const getStory = path => {
   })
 }
 
-const getComponents = glob(`${compDir}/**/*.js*`).then(paths => {
+const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
   Promise.all(paths.map(path => getComponent(path)))
     .then((paths) => {
       fs.writeFile('./app/components.js', `
@@ -59,7 +59,7 @@ const getComponents = glob(`${compDir}/**/*.js*`).then(paths => {
     }).catch(err => console.log(err))
 })
 
-const getStories = glob([`${compDir}/${storyDir}/**/*.md`]).then(paths => {
+const getStories = glob([`${storyDir}**/*.md`]).then(paths => {
   Promise.all(paths.map(path => getStory(path)))
     .then(stories => {
       fs.writeFile('./app/fixtures.js', `
