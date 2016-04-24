@@ -41,12 +41,9 @@ const Pattern = createClass({
 
         <div>
           <Component {...this.state} />
-
-          <div>
-            {PropsListComponent}
-            {NotesComponent}
-          </div>
         </div>
+        {PropsListComponent}
+        {NotesComponent}
       </div>
     )
   }
