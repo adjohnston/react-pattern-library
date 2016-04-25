@@ -1,8 +1,8 @@
 import React, { createClass } from 'react'
 
-const PropsList = createClass({
+const PropTypes = createClass({
   getInitialState() {
-    return this.props.propsList || {}
+    return this.props.preset || {}
   },
 
   handleUpdateState(e) {
@@ -42,4 +42,4 @@ const PropsList = createClass({
   }
 })
 
-export default PropsList
+export default PropTypes

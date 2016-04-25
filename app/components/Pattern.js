@@ -1,12 +1,12 @@
 import React, { createClass } from 'react'
-import PropsList from './PropsList'
+import PropTypes from './PropTypes'
 import Notes from './Notes'
-import { hyphenate } from '../utils/helpers'
-
+import { first, createFunc } from '../utils/helpers'
 
 const Pattern = createClass({
   getInitialState() {
-    return this.props.propsList || {}
+    const { propTypes, presets } = this.props
+    return createFunc(propTypes, first(presets)) || {}
   },
 
   handleUpdateState(e) {
@@ -17,13 +17,16 @@ const Pattern = createClass({
   },
 
   render() {
-    const { header, notes, propsList, Component } = this.props
+    const { patternName, propTypes, presets, notes, Component } = this.props
 
-    const PropsListComponent = propsList && (
-      <PropsList
-        propsList={propsList}
+    const PropTypesComponent = propTypes && (
+      <PropTypes
+        propTypes={propTypes}
+        preset={createFunc(propTypes, first(presets))}
         onUpdateState={this.handleUpdateState} />
     )
+
+    const PresetsComponent = presets
 
     const NotesComponent = notes && (
       <Notes
@@ -33,17 +36,13 @@ const Pattern = createClass({
     return (
       <div>
         <h1>
-          <a
-            href={`#${hyphenate(header).toLowerCase()}`}>
-            {header}
-          </a>
+          {patternName}
         </h1>
 
-        <div>
-          <Component {...this.state} />
-        </div>
+        <Component
+          {...this.state} />
 
-        {PropsListComponent}
+        {PropTypesComponent}
         {NotesComponent}
       </div>
     )

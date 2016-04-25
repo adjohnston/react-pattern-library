@@ -11,22 +11,19 @@ const Patterns = props => {
       </header>
 
       {Object.keys(stories).map((story, i) => {
+        const Component = components[story]
+        const { propTypes, presets, notes } = stories[story]
+
         return (
           <div key={i}>
-            {stories[story].map((modifiers, i) => {
-              const Component = components[story]
-              const { header, props, notes } = modifiers
-
-              return (
-                <Pattern
-                  key={i}
-                  header={header}
-                  notes={notes}
-                  propsList={props}
-                  Component={Component}>
-                </Pattern>
-              )
-            })}
+            <Pattern
+              key={i}
+              patternName={story}
+              propTypes={propTypes}
+              presets={presets}
+              notes={notes}
+              Component={Component}>
+            </Pattern>
           </div>
         )
       })}
