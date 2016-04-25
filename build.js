@@ -1,15 +1,16 @@
-const fs = require('fs')
+const fs = require('fs-extra')
 const glob = require('globby')
 const yamlFront = require('yaml-front-matter')
 const args = require('minimist')(process.argv.splice(2))
 
-const dir = args.dir || '.'
-const storyDir = args.stories || ''
+const compDir = args.components || '.'
+const storyDir = args.stories || `${compDir}stories/`
 
-const _getFileNameFromPath = () => {
+//    getFileNameFromPath : string -> string
+const getFileNameFromPath = () => {
   var memo = {}
 
-  return (path) => {
+  return path => {
     if (!(path in memo))
       memo[path] = path.split('/').pop().split('.').shift()
 
@@ -17,36 +18,54 @@ const _getFileNameFromPath = () => {
   }
 }()
 
-const getComponents = glob([`${dir}/**/*.js*`]).then(paths => {
-  fs.writeFile('./app/components.js', `
-    ${paths.map(path => {
-      return `import ${_getFileNameFromPath(path)} from '${path}'`
-    }).join('\n\t\t')}
+//    getComponent : string -> promise
+const getComponent = path => {
+  return new Promise((res, rej) => {
+    const componentsPath = `copied-components/${path}`
 
-    const components = {
-      ${paths.map(path => _getFileNameFromPath(path))}
-    }
+    fs.copy(path, componentsPath, (err) => {
+      if (err) rej(err)
 
-    export default components
-  `)
-})
-
-const getStories = glob([`${dir}/${storyDir}/**/*.md`]).then(paths => {
-  var stories = []
-
-  paths.forEach(path => {
-    fs.readFile(path, 'utf8', (err, md) => {
-      if (err) throw err
-
-      stories.push(yamlFront.loadFront(md))
+      res(componentsPath)
     })
   })
+}
 
-  fs.writeFile('./app/fixtures.js', `
-    const fixtures = {
-      ${stories.forEach(story => {
-        return story
-      })}
-    }
-  `)
+//    getStory : string -> promise
+const getStory = path => {
+  return new Promise((res, rej) => {
+    fs.readFile(path, 'utf8', (err, md) => {
+      if (err) rej(err)
+
+      var json = yamlFront.loadFront(md)
+
+      delete json.__content
+      res(JSON.stringify(json).slice(1, -1))
+    })
+  })
+}
+
+const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
+  Promise.all(paths.map(path => getComponent(path)))
+    .then((paths) => {
+      fs.writeFile('./app/components.js', `
+        ${paths.map(path => {
+          return `import ${getFileNameFromPath(path)} from '${path}'`
+        }).join('\n\t\t')}
+        const components = {
+          ${paths.map(path => getFileNameFromPath(path))}
+        }
+        export default components`)
+    }).catch(err => console.log(err))
+})
+
+const getStories = glob([`${storyDir}**/*.md`]).then(paths => {
+  Promise.all(paths.map(path => getStory(path)))
+    .then(stories => {
+      fs.writeFile('./app/stories.js', `
+        const stories = {
+          ${stories}
+        }
+        export default stories`)
+    }).catch(err => console.log(err))
 })

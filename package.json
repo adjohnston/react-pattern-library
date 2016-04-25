@@ -10,13 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/adjohnston/react-pattern-library.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Adam Johnston",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/adjohnston/react-pattern-library/issues"
   },
   "homepage": "https://github.com/adjohnston/react-pattern-library#readme",
   "devDependencies": {
+    "fs-extra": "^0.28.0",
     "globby": "^4.0.0",
     "jspm": "^0.16.33",
     "minimist": "^1.2.0",
