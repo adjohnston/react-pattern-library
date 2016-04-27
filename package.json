@@ -21,6 +21,7 @@
     "globby": "^4.0.0",
     "jspm": "^0.16.33",
     "minimist": "^1.2.0",
+    "tape": "^4.5.1",
     "yaml-front-matter": "^3.4.0"
   },
   "jspm": {
