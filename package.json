@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "jspm": "jspm"
+    "jspm": "jspm",
+    "test": "babel-node node_modules/.bin/tape tests/**/*.js"
   },
   "repository": {
     "type": "git",
