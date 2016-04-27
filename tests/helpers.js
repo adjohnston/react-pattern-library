@@ -10,7 +10,7 @@ test('capitalise', t => {
 })
 
 test('hyphenate', t => {
-  const exp = 'the-name-of-my-component'
+  const exp = 'The-name-of-my-Component'
   const act = helpers.hyphenate('The name of my Component')
 
   t.equal(exp, act, 'Hyphenate should hyphenate')
