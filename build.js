@@ -1,10 +1,9 @@
 const fs = require('fs-extra')
 const glob = require('globby')
-const yamlFront = require('yaml-front-matter')
 const args = require('minimist')(process.argv.splice(2))
 
-const compDir = args.components || '.'
-const storyDir = args.stories || `${compDir}stories/`
+const compDir = args.components
+const storyDir = args.stories
 
 //    getFileNameFromPath : string -> string
 const getFileNameFromPath = () => {
@@ -34,20 +33,18 @@ const getComponent = path => {
 //    getStory : string -> promise
 const getStory = path => {
   return new Promise((res, rej) => {
-    fs.readFile(path, 'utf8', (err, md) => {
-      if (err) rej(err)
+    const storyName = getFileNameFromPath(path)
+    const story = require(`${__dirname}/${path}`)
 
-      var json = yamlFront.loadFront(md)
-
-      delete json.__content
-      res(JSON.stringify(json).slice(1, -1))
-    })
+    return (story) ?
+      res(`${storyName} = { ${story} }`) :
+      rej(new Error('No story found'))
   })
 }
 
 const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
   Promise.all(paths.map(path => getComponent(path)))
-    .then((paths) => {
+    .then(paths => {
       fs.writeFile('./app/components.js', `
         ${paths.map(path => {
           return `import ${getFileNameFromPath(path)} from '${path}'`
@@ -63,9 +60,7 @@ const getStories = glob([`${storyDir}**/*.md`]).then(paths => {
   Promise.all(paths.map(path => getStory(path)))
     .then(stories => {
       fs.writeFile('./app/stories.js', `
-        const stories = {
-          ${stories}
-        }
+        const stories = ${JSON.stringify(stories)}
         export default stories`)
     }).catch(err => console.log(err))
 })
