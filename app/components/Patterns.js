@@ -1,5 +1,6 @@
 import React from 'react'
 import Pattern from './Pattern'
+import { firstKey } from '../utils/helpers'
 
 const Patterns = props => {
   const { stories, components } = props
@@ -10,18 +11,18 @@ const Patterns = props => {
         <h1>Components</h1>
       </header>
 
-      {Object.keys(stories).map((story, i) => {
-        const Component = components[story]
-        const { propTypes, presets, notes } = stories[story]
+      {stories.map((story, i) => {
+        const key = firstKey(story)
+        const Component = components[key]
+        const { propTypes, presets } = story[key]
 
         return (
           <div key={i}>
             <Pattern
               key={i}
-              patternName={story}
+              patternName={key}
               propTypes={propTypes}
               presets={presets}
-              notes={notes}
               Component={Component}>
             </Pattern>
           </div>

@@ -17,7 +17,7 @@ const Pattern = createClass({
   },
 
   render() {
-    const { patternName, propTypes, presets, notes, Component } = this.props
+    const { patternName, propTypes, presets, Component } = this.props
 
     const PropTypesComponent = propTypes && (
       <PropTypes
@@ -28,10 +28,10 @@ const Pattern = createClass({
 
     const PresetsComponent = presets
 
-    const NotesComponent = notes && (
-      <Notes
-        notes={notes} />
-    )
+    // const NotesComponent = notes && (
+    //   <Notes
+    //     notes={notes} />
+    // )
 
     return (
       <div>
@@ -43,7 +43,6 @@ const Pattern = createClass({
           {...this.state} />
 
         {PropTypesComponent}
-        {NotesComponent}
       </div>
     )
   }

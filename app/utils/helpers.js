@@ -15,6 +15,11 @@ const first = obj => {
   return obj[Object.keys(obj)[0]]
 }
 
+//    firstKey : object -> string
+const firstKey = obj => {
+  return Object.keys(obj)[0]
+}
+
 const createFunc = (propTypes, props) => {
   const propTypeKeys = Object.keys(propTypes)
   const propKeys = Object.keys(props)
@@ -28,4 +33,4 @@ const createFunc = (propTypes, props) => {
   }, {})
 }
 
-export { capitalise, hyphenate, first, createFunc }
+export { capitalise, hyphenate, first, firstKey, createFunc }
