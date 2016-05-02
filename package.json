@@ -30,7 +30,8 @@
   "jspm": {
     "dependencies": {
       "react": "npm:react@^15.0.1",
-      "react-dom": "npm:react-dom@^15.0.1"
+      "react-dom": "npm:react-dom@^15.0.1",
+      "react-markdown": "npm:react-markdown@^2.2.0"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
