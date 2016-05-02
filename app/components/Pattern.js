@@ -1,4 +1,5 @@
 import React, { createClass } from 'react'
+import ReactMarkdown from 'react-markdown'
 import PropTypes from './PropTypes'
 import Presets from './Presets'
 import { first, createFunc, hasMoreThanOne } from '../utils/helpers'
@@ -24,7 +25,7 @@ const Pattern = createClass({
   },
 
   render() {
-    const { patternName, propTypes, presets, Component } = this.props
+    const { patternName, propTypes, notes, presets, Component } = this.props
 
     const PropTypesComponent = propTypes && (
       <PropTypes
@@ -39,10 +40,10 @@ const Pattern = createClass({
         handleUpdatePreset={this.handleUpdatePreset} />
     )
 
-    // const NotesComponent = notes && (
-    //   <Notes
-    //     notes={notes} />
-    // )
+    const NotesComponent = notes && (
+      <ReactMarkdown
+        source={notes} />
+    )
 
     return (
       <div>
@@ -55,6 +56,7 @@ const Pattern = createClass({
 
         {PropTypesComponent}
         {PresetsComponent}
+        {NotesComponent}
       </div>
     )
   }

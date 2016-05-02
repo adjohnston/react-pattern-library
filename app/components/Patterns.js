@@ -3,7 +3,7 @@ import Pattern from './Pattern'
 import { firstKey } from '../utils/helpers'
 
 const Patterns = props => {
-  const { specs, components } = props
+  const { specs, notes, components } = props
 
   return (
     <div>
@@ -22,6 +22,7 @@ const Patterns = props => {
               key={i}
               patternName={key}
               propTypes={propTypes}
+              notes={notes[i]}
               presets={presets}
               Component={Component}>
             </Pattern>
