@@ -1,19 +1,27 @@
 import React, { createClass } from 'react'
 import PropTypes from './PropTypes'
+import Presets from './Presets'
 import Notes from './Notes'
-import { first, createFunc } from '../utils/helpers'
+import { first, createFunc, hasMoreThanOne } from '../utils/helpers'
 
 const Pattern = createClass({
   getInitialState() {
     const { propTypes, presets } = this.props
+
     return createFunc(propTypes, first(presets)) || {}
   },
 
   handleUpdateState(e) {
     const state = {}
-    state[e.target.dataset.key] = e.target.value
+    const key = e.target.dataset.key
+
+    state[key] = e.target.value
 
     this.setState(state)
+  },
+
+  handleUpdatePreset(state) {
+    this.setState(createFunc(this.props.propTypes, state))
   },
 
   render() {
@@ -21,12 +29,16 @@ const Pattern = createClass({
 
     const PropTypesComponent = propTypes && (
       <PropTypes
-        propTypes={propTypes}
-        preset={createFunc(propTypes, first(presets))}
+        propTypes={this.state}
+        preset={this.state}
         onUpdateState={this.handleUpdateState} />
     )
 
-    const PresetsComponent = presets
+    const PresetsComponent = presets && hasMoreThanOne(presets) && (
+      <Presets
+        presets={presets}
+        handleUpdatePreset={this.handleUpdatePreset} />
+    )
 
     // const NotesComponent = notes && (
     //   <Notes
@@ -43,6 +55,7 @@ const Pattern = createClass({
           {...this.state} />
 
         {PropTypesComponent}
+        {PresetsComponent}
       </div>
     )
   }

@@ -5,6 +5,10 @@ const PropTypes = createClass({
     return this.props.preset || {}
   },
 
+  componentWillReceiveProps(props) {
+    this.setState(props.preset)
+  },
+
   handleUpdateState(e) {
     const state = {}
     state[e.target.dataset.key] = e.target.value
@@ -14,6 +18,8 @@ const PropTypes = createClass({
   },
 
   render() {
+    const { propTypes } = this.props
+
     return (
       <div>
         <h2>Props</h2>
@@ -27,6 +33,7 @@ const PropTypes = createClass({
               </span>
 
               <input
+                disabled={typeof propTypes[key] === 'function'}
                 type="text"
                 onChange={this.handleUpdateState}
                 data-key={key}

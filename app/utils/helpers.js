@@ -33,4 +33,8 @@ const createFunc = (propTypes, props) => {
   }, {})
 }
 
-export { capitalise, hyphenate, first, firstKey, createFunc }
+const hasMoreThanOne = (obj) => {
+  return Object.keys(obj).length > 1
+}
+
+export { capitalise, hyphenate, first, firstKey, createFunc, hasMoreThanOne }
