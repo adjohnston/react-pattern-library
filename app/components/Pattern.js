@@ -41,8 +41,12 @@ const Pattern = createClass({
     )
 
     const NotesComponent = notes && (
-      <ReactMarkdown
-        source={notes} />
+      <div>
+        <h2>Notes</h2>
+
+        <ReactMarkdown
+          source={notes} />
+      </div>
     )
 
     return (
