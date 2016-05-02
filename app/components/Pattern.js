@@ -1,7 +1,6 @@
 import React, { createClass } from 'react'
 import PropTypes from './PropTypes'
 import Presets from './Presets'
-import Notes from './Notes'
 import { first, createFunc, hasMoreThanOne } from '../utils/helpers'
 
 const Pattern = createClass({

@@ -30,18 +30,6 @@ const getComponent = path => {
   })
 }
 
-//    getStory : string -> promise
-const getStory = path => {
-  return new Promise((res, rej) => {
-    const storyName = getFileNameFromPath(path)
-    const story = require(`${__dirname}/${path}`)
-
-    return (story) ?
-      res(`${storyName} = { ${story} }`) :
-      rej(new Error('No story found'))
-  })
-}
-
 const getSpec = path => new Promise((res, rej) => {
   const spec = require(`${__dirname}/${path}`)
 
