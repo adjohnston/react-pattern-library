@@ -42,6 +42,12 @@ const getStory = path => {
   })
 }
 
+const getSpec = path => new Promise((res, rej) => {
+  const spec = require(`${__dirname}/${path}`)
+
+  return (spec) ? res(spec) : rej(new Error('No spec'))
+})
+
 const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
   Promise.all(paths.map(path => getComponent(path)))
     .then(paths => {
@@ -56,11 +62,12 @@ const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
     }).catch(err => console.log(err))
 })
 
-const getStories = glob([`${storyDir}**/*.md`]).then(paths => {
-  Promise.all(paths.map(path => getStory(path)))
-    .then(stories => {
-      fs.writeFile('./app/stories.js', `
-        const stories = ${JSON.stringify(stories)}
-        export default stories`)
-    }).catch(err => console.log(err))
+const getSpecs = glob(`${storyDir}**/*.js`).then(paths => {
+  Promise.all(paths.map(path => getSpec(path)))
+    .then(specs => {
+      fs.writeFile('./app/specs.js', `
+        const specs = ${JSON.stringify(specs)}
+        export default specs
+      `)
+    })
 })

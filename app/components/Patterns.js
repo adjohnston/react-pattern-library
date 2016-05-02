@@ -3,7 +3,7 @@ import Pattern from './Pattern'
 import { firstKey } from '../utils/helpers'
 
 const Patterns = props => {
-  const { stories, components } = props
+  const { specs, components } = props
 
   return (
     <div>
@@ -11,10 +11,10 @@ const Patterns = props => {
         <h1>Components</h1>
       </header>
 
-      {stories.map((story, i) => {
-        const key = firstKey(story)
+      {specs.map((spec, i) => {
+        const key = firstKey(spec)
         const Component = components[key]
-        const { propTypes, presets } = story[key]
+        const { propTypes, presets } = spec[key]
 
         return (
           <div key={i}>
