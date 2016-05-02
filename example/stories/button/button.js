@@ -12,6 +12,12 @@ module.exports = {
         onClick: 'alert("normal")',
         children: 'A basic button',
       },
+
+      Warning: {
+        className: 'btn--warning',
+        onClick: 'alert("warning")',
+        children: 'A warning button'
+      }
     },
   }
-}  
+}
