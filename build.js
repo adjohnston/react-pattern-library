@@ -36,6 +36,14 @@ const getSpec = path => new Promise((res, rej) => {
   return (spec) ? res(spec) : rej(new Error('No spec'))
 })
 
+const getNote = path => new Promise((res, rej) => {
+  fs.readFile(path, 'utf8', (err, md) => {
+    if (err) rej(err)
+
+    res(md)
+  })
+})
+
 const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
   Promise.all(paths.map(path => getComponent(path)))
     .then(paths => {
@@ -56,6 +64,16 @@ const getSpecs = glob(`${storyDir}**/*.js`).then(paths => {
       fs.writeFile('./app/specs.js', `
         const specs = ${JSON.stringify(specs)}
         export default specs
+      `)
+    })
+})
+
+const getNotes = glob(`${storyDir}**/*.md`).then(paths => {
+  Promise.all(paths.map(path => getNote(path)))
+    .then(notes => {
+      fs.writeFile('./app/notes.js', `
+        const notes = ${JSON.stringify(notes)}
+        export default notes
       `)
     })
 })
