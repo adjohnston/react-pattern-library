@@ -5,6 +5,20 @@ import Presets from './Presets'
 import { first, createFunc, hasMoreThanOne } from '../utils/helpers'
 
 const Pattern = createClass({
+  renderComponent: (() => {
+    let component
+    let state
+
+    return (Component, newState) => {
+      if (component && state === newState)
+        return component
+
+      component = <Component {...newState} />
+      state = newState
+      return component
+    }
+  })(),
+
   getInitialState() {
     const { propTypes, presets } = this.props
 
@@ -21,7 +35,8 @@ const Pattern = createClass({
   },
 
   handleUpdatePreset(state) {
-    this.setState(createFunc(this.props.propTypes, state))
+    const component = this.renderComponent(null, state)
+    this.setState(createFunc(this.props.propTypes, state, component))
   },
 
   render() {
@@ -55,8 +70,7 @@ const Pattern = createClass({
           {patternName}
         </h1>
 
-        <Component
-          {...this.state} />
+        {this.renderComponent(Component, this.state)}
 
         {PropTypesComponent}
         {PresetsComponent}

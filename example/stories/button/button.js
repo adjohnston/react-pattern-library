@@ -9,13 +9,12 @@ module.exports = {
     presets: {
       Default: {
         className: 'btn',
-        onClick: 'alert("normal")',
-        children: 'A basic button',
+        onClick: 'this.setState({counter: this.state.counter + 1})',
       },
 
       Warning: {
         className: 'btn btn--warning',
-        onClick: 'alert("warning")',
+        onClick: 'console.log(this)',
         children: 'A warning button'
       },
 

@@ -20,13 +20,13 @@ const firstKey = obj => {
   return Object.keys(obj)[0]
 }
 
-const createFunc = (propTypes, props) => {
+const createFunc = (propTypes, props, Component) => {
   const propTypeKeys = Object.keys(propTypes)
   const propKeys = Object.keys(props)
 
   return propTypeKeys.reduce((acc, key, i) => {
     (propKeys.includes(key) && propTypes[key] === 'func') ?
-      acc[key] = new Function(props[key]) :
+      acc[key] = new Function(props[key]).bind(Component) :
       acc[key] = props[key]
 
     return acc
