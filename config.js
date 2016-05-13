@@ -20,6 +20,7 @@ System.config({
     "react": "npm:react@15.0.2",
     "react-dom": "npm:react-dom@15.0.1",
     "react-markdown": "npm:react-markdown@2.2.0",
+    "react-router": "npm:react-router@2.4.0",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
@@ -70,9 +71,6 @@ System.config({
     },
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
-    },
-    "npm:babel-plugin-syntax-flow@6.5.0": {
-      "babel-runtime": "npm:babel-runtime@5.8.38"
     },
     "npm:babel-runtime@5.8.38": {
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -127,14 +125,20 @@ System.config({
     "npm:entities@1.1.1": {
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
-    "npm:fbjs@0.8.1": {
-      "babel-plugin-syntax-flow": "npm:babel-plugin-syntax-flow@6.5.0",
+    "npm:fbjs@0.8.2": {
       "core-js": "npm:core-js@1.2.6",
       "isomorphic-fetch": "npm:isomorphic-fetch@2.2.1",
       "loose-envify": "npm:loose-envify@1.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "promise": "npm:promise@7.1.1",
       "ua-parser-js": "npm:ua-parser-js@0.7.10"
+    },
+    "npm:history@2.1.1": {
+      "deep-equal": "npm:deep-equal@1.0.1",
+      "invariant": "npm:invariant@2.2.1",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "query-string": "npm:query-string@3.0.3",
+      "warning": "npm:warning@2.1.0"
     },
     "npm:https-browserify@0.0.0": {
       "http": "github:jspm/nodelibs-http@1.7.1"
@@ -152,8 +156,12 @@ System.config({
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
+    "npm:invariant@2.2.1": {
+      "loose-envify": "npm:loose-envify@1.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
     "npm:isomorphic-fetch@2.2.1": {
-      "node-fetch": "npm:node-fetch@1.5.1",
+      "node-fetch": "npm:node-fetch@1.5.2",
       "whatwg-fetch": "npm:whatwg-fetch@1.0.0"
     },
     "npm:lodash.assign@4.0.8": {
@@ -169,7 +177,7 @@ System.config({
       "stream": "github:jspm/nodelibs-stream@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:node-fetch@1.5.1": {
+    "npm:node-fetch@1.5.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "encoding": "npm:encoding@0.1.12",
       "http": "github:jspm/nodelibs-http@1.7.1",
@@ -187,7 +195,7 @@ System.config({
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:process-nextick-args@1.0.6": {
+    "npm:process-nextick-args@1.0.7": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:process@0.11.2": {
@@ -200,6 +208,9 @@ System.config({
     "npm:punycode@1.3.2": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
+    "npm:query-string@3.0.3": {
+      "strict-uri-encode": "npm:strict-uri-encode@1.1.0"
+    },
     "npm:react-dom@15.0.1": {
       "react": "npm:react@15.0.2"
     },
@@ -211,10 +222,18 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "react": "npm:react@15.0.2"
     },
+    "npm:react-router@2.4.0": {
+      "history": "npm:history@2.1.1",
+      "hoist-non-react-statics": "npm:hoist-non-react-statics@1.0.5",
+      "invariant": "npm:invariant@2.2.1",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "react": "npm:react@15.0.2",
+      "warning": "npm:warning@2.1.0"
+    },
     "npm:react@15.0.2": {
-      "fbjs": "npm:fbjs@0.8.1",
+      "fbjs": "npm:fbjs@0.8.2",
       "loose-envify": "npm:loose-envify@1.1.0",
-      "object-assign": "npm:object-assign@4.0.1",
+      "object-assign": "npm:object-assign@4.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:readable-stream@1.1.14": {
@@ -234,7 +253,7 @@ System.config({
       "inherits": "npm:inherits@2.0.1",
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "process-nextick-args": "npm:process-nextick-args@1.0.6",
+      "process-nextick-args": "npm:process-nextick-args@1.0.7",
       "string_decoder": "npm:string_decoder@0.10.31",
       "util-deprecate": "npm:util-deprecate@1.0.2"
     },
@@ -260,6 +279,10 @@ System.config({
     },
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:warning@2.1.0": {
+      "loose-envify": "npm:loose-envify@1.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     }
   }
