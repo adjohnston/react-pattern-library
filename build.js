@@ -47,7 +47,7 @@ const getNote = path => new Promise((res, rej) => {
 const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
   Promise.all(paths.map(path => getComponent(path)))
     .then(paths => {
-      fs.writeFile('./app/components.js', `
+      fs.writeFile(`${__dirname}/app/components.js`, `
         ${paths.map(path => {
           return `import ${getFileNameFromPath(path)} from '${path}'`
         }).join('\n\t\t')}
@@ -61,7 +61,7 @@ const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
 const getSpecs = glob(`${storyDir}**/*.js`).then(paths => {
   Promise.all(paths.map(path => getSpec(path)))
     .then(specs => {
-      fs.writeFile('./app/specs.js', `
+      fs.writeFile(`${__dirname}/app/specs.js`, `
         const specs = ${JSON.stringify(specs)}
         export default specs
       `)
@@ -71,7 +71,7 @@ const getSpecs = glob(`${storyDir}**/*.js`).then(paths => {
 const getNotes = glob(`${storyDir}**/*.md`).then(paths => {
   Promise.all(paths.map(path => getNote(path)))
     .then(notes => {
-      fs.writeFile('./app/notes.js', `
+      fs.writeFile(`${__dirname}/app/notes.js`, `
         const notes = ${JSON.stringify(notes)}
         export default notes
       `)
