@@ -12,19 +12,17 @@ const Patterns = props => {
       </header>
 
       {specs.map((spec, i) => {
-        const key = firstKey(spec)
-        const Component = components[key]
-        const { propTypes, presets } = spec[key]
+        const { component, propTypes, presets } = spec
 
         return (
           <div key={i}>
             <Pattern
               key={i}
-              patternName={key}
+              patternName={component}
               propTypes={propTypes}
               notes={notes[i]}
               presets={presets}
-              Component={Component}>
+              Component={components[component]}>
             </Pattern>
           </div>
         )
