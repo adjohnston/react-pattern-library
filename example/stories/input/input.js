@@ -1,13 +1,17 @@
-module.exports = {
-  Input: {
-    propTypes: {
-      placeholder: 'string',
-    },
+const constants = require('../../constants')
 
-    presets: {
-      Default: {
-        placeholder: 'e.g. John Smith',
-      },
+module.exports = {
+  group: constants.groups.atoms,
+  page: 'Input Fields',
+  component: 'Input',
+
+  propTypes: {
+    placeholder: 'string',
+  },
+
+  presets: {
+    Default: {
+      placeholder: 'e.g. John Smith',
     },
   },
 }
