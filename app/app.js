@@ -1,11 +1,15 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Patterns from './components/Patterns'
-import specs from './specs'
-import notes from './notes'
-import components from './components'
+import { Router, Route, browserHistory } from 'react-router'
+import childRoutes from './utils/urls'
+import Library from './components/Library'
 
-render(<Patterns
-  specs={specs}
-  notes={notes}
-  components={components} />, document.getElementById('app'))
+const routes = {
+  path: '/',
+  component: Library,
+  childRoutes
+}
+
+render((
+  <Router history={browserHistory} routes={routes} />
+), document.getElementById('app'))
