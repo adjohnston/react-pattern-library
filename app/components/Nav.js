@@ -12,20 +12,6 @@ const Nav = ({childRoutes}) => {
   }, {})
 
   return (
-    // <ul>
-    //   {childRoutes.map(({page, path}, i) => {
-    //     return (
-    //       <li
-    //         key={i}>
-    //         <Link
-    //           to={path}>
-    //           {page}
-    //         </Link>
-    //       </li>
-    //     )
-    //   })}
-    // </ul>
-
     <ul>
       {Object.keys(groups).map((group, i) => {
         return (
