@@ -13,16 +13,19 @@ const Pattern = createClass({
       if (component && state === newState)
         return component
 
-      component = <Component {...newState} />
+      if (Component)
+        component = <Component {...newState} />
+
       state = newState
-      return component
+
+      return component ? component : null
     }
   })(),
 
   getInitialState() {
     const { propTypes, presets } = this.props
 
-    return createFunc(propTypes, first(presets)) || {}
+    return (propTypes && presets) ? createFunc(propTypes, first(presets)) : {}
   },
 
   handleUpdateState(e) {
