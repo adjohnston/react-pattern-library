@@ -9,7 +9,11 @@ const childRoutes = specs.map(({group, page, component, propTypes, presets}) => 
   const path = hyphenate(page.toLowerCase())
 
   const note = notes.reduce((acc, note) => {
-    acc += note[component.toLowerCase()]
+    const componentName = component.toLowerCase()
+
+    if (note[componentName] && componentName)
+      acc += note[componentName]
+
     return acc
   }, '')
 
