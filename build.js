@@ -40,7 +40,11 @@ const getNote = path => new Promise((res, rej) => {
   fs.readFile(path, 'utf8', (err, md) => {
     if (err) rej(err)
 
-    res(md)
+    const note = {}
+    const component = getFileNameFromPath(path)
+
+    note[component] = md
+    res(note)
   })
 })
 
