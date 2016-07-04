@@ -19,7 +19,7 @@ const childRoutes = specs.map(({group, page, component, propTypes, presets}) => 
 
   const ChildComponent = () => {
     return <Pattern
-      patternName={component}
+      patternName={pageName}
       propTypes={propTypes}
       notes={note}
       presets={presets}
@@ -27,7 +27,7 @@ const childRoutes = specs.map(({group, page, component, propTypes, presets}) => 
   }
 
   return {
-    path, group, page,
+    path, group, pageName,
     component: ChildComponent
   }
 })

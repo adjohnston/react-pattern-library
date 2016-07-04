@@ -2,7 +2,7 @@ const constants = require('../../constants')
 
 module.exports = {
   group: constants.groups.atoms,
-  page: 'Buttons',
+  pageName: 'Buttons',
   component: 'Button',
 
   propTypes: {

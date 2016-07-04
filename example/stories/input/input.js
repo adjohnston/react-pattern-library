@@ -2,7 +2,7 @@ const constants = require('../../constants')
 
 module.exports = {
   group: constants.groups.atoms,
-  page: 'Input Fields',
+  pageName: 'Input Fields',
   component: 'Input',
 
   propTypes: {

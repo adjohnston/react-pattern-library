@@ -2,11 +2,11 @@ import React, { createClass } from 'react'
 import { Link } from 'react-router'
 
 const Nav = ({childRoutes}) => {
-  const groups = childRoutes.reduce((acc, {group, path, page}) => {
+  const groups = childRoutes.reduce((acc, {group, path, pageName}) => {
     if (!acc[group])
       acc[group] = []
 
-    acc[group].push({path, page})
+    acc[group].push({path, pageName})
 
     return acc
   }, {})
@@ -21,13 +21,13 @@ const Nav = ({childRoutes}) => {
               {group}
             </div>
             <ul>
-              {groups[group].map(({path, page}, i) => {
+              {groups[group].map(({path, pageName}, i) => {
                 return (
                   <li
                     key={i}>
                     <Link
                       to={path}>
-                      {page}
+                      {pageName}
                     </Link>
                   </li>
                 )
