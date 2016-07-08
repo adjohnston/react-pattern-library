@@ -4,6 +4,7 @@ module.exports = {
   group: constants.groups.atoms,
   pageName: 'Buttons',
   component: 'Button',
+  notesRef: 'button',
 
   propTypes: {
     className: 'string',
