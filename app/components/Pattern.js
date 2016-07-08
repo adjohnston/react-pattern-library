@@ -13,7 +13,7 @@ const Pattern = createClass({
       if (component && state === newState)
         return component
 
-      component = Component && <Component {...newState} /> || null
+      component = Component && <Component {...newState} />
       state = newState
 
       return component
@@ -48,13 +48,13 @@ const Pattern = createClass({
         propTypes={this.state}
         preset={this.state}
         onUpdateState={this.handleUpdateState} />
-    )
+    ) || null
 
     const PresetsComponent = presets && hasMoreThanOne(presets) && (
       <Presets
         presets={presets}
         handleUpdatePreset={this.handleUpdatePreset} />
-    )
+    ) || null
 
     const NotesComponent = notes && (
       <div>
@@ -63,7 +63,7 @@ const Pattern = createClass({
         <ReactMarkdown
           source={notes} />
       </div>
-    )
+    ) || null
 
     return (
       <div>
