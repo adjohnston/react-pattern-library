@@ -13,12 +13,10 @@ const Pattern = createClass({
       if (component && state === newState)
         return component
 
-      if (Component)
-        component = <Component {...newState} />
-
+      component = Component && <Component {...newState} /> || null
       state = newState
 
-      return component ? component : null
+      return component
     }
   })(),
 
