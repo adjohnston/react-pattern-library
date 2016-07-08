@@ -12,31 +12,35 @@ const Nav = ({childRoutes}) => {
   }, {})
 
   return (
-    <ul>
-      {Object.keys(groups).map((group, i) => {
-        return (
-          <li
-            key={i}>
-            <div>
-              {group}
-            </div>
-            <ul>
-              {groups[group].map(({path, pageName}, i) => {
-                return (
-                  <li
-                    key={i}>
-                    <Link
-                      to={path}>
-                      {pageName}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </li>
-        )
-      })}
-    </ul>
+    <nav>
+      <ul>
+        {Object.keys(groups).map((group, i) => {
+          return (
+            <li
+              key={i}>
+              <div>
+                {group}
+              </div>
+              <ul>
+                {groups[group].map(({path, pageName}, i) => {
+                  return (
+                    <li
+                      key={i}>
+                      <Link
+                        to={path}>
+                        {pageName}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </li>
+          )
+        })}
+      </ul>
+
+      <hr />
+    </nav>
   )
 }
 
