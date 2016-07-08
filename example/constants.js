@@ -1,5 +1,6 @@
 module.exports = {
   groups: {
-    atoms: 'Atoms'
+    pages: 'Pages',
+    atoms: 'Atoms',
   },
 }
