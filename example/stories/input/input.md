@@ -1,8 +1,4 @@
 # Input Field
 ---
-## Modifiers
-- Warning
-- Large
----
 ## Developer Notes
-Hello Mike!
+A basic input for adding text. Normally used as part of a form.
