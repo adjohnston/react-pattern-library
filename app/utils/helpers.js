@@ -33,6 +33,7 @@ const createFunc = (propTypes, props, Component) => {
   }, {})
 }
 
+//    hasMoreThanOne : object -> boolean
 const hasMoreThanOne = (obj) => {
   return Object.keys(obj).length > 1
 }
