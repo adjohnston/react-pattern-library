@@ -5,14 +5,12 @@ import specs from '../specs'
 import components from '../components'
 import Pattern from '../components/Pattern'
 
-const childRoutes = specs.map(({group, page, component, propTypes, presets}) => {
-  const path = hyphenate(page.toLowerCase())
+const childRoutes = specs.map(({group, pageName, notesRef, component, propTypes, presets}) => {
+  const path = hyphenate(pageName.toLowerCase())
 
   const note = notes.reduce((acc, note) => {
-    const componentName = component.toLowerCase()
-
-    if (note[componentName] && componentName)
-      acc += note[componentName]
+    if (note[notesRef])
+      acc += note[notesRef]
 
     return acc
   }, '')
