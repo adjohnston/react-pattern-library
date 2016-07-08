@@ -20,14 +20,13 @@ const firstKey = obj => {
   return Object.keys(obj)[0]
 }
 
-const createFunc = (propTypes, props, Component) => {
+const createState = (propTypes, props, component) => {
   const propTypeKeys = Object.keys(propTypes)
   const propKeys = Object.keys(props)
 
   return propTypeKeys.reduce((acc, key, i) => {
-    (propKeys.includes(key) && propTypes[key] === 'func') ?
-      acc[key] = new Function(props[key]).bind(Component) :
-      acc[key] = props[key]
+    propKeys.includes(key) && propTypes[key] === 'func' ?
+      acc[key] = new Function(props[key]) : acc[key] = props[key]
 
     return acc
   }, {})
@@ -38,4 +37,4 @@ const hasMoreThanOne = (obj) => {
   return Object.keys(obj).length > 1
 }
 
-export { capitalise, hyphenate, first, firstKey, createFunc, hasMoreThanOne }
+export { capitalise, hyphenate, first, firstKey, createState, hasMoreThanOne }

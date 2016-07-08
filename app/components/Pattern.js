@@ -2,7 +2,7 @@ import React, { createClass } from 'react'
 import ReactMarkdown from 'react-markdown'
 import PropTypes from './PropTypes'
 import Presets from './Presets'
-import { first, createFunc, hasMoreThanOne } from '../utils/helpers'
+import { first, createState, hasMoreThanOne } from '../utils/helpers'
 
 const Pattern = createClass({
   renderComponent: (() => {
@@ -23,7 +23,7 @@ const Pattern = createClass({
   getInitialState() {
     const { propTypes, presets } = this.props
 
-    return (propTypes && presets) ? createFunc(propTypes, first(presets)) : {}
+    return (propTypes && presets) ? createState(propTypes, first(presets), this) : {}
   },
 
   handleUpdateState(e) {
@@ -37,7 +37,7 @@ const Pattern = createClass({
 
   handleUpdatePreset(state) {
     const component = this.renderComponent(null, state)
-    this.setState(createFunc(this.props.propTypes, state, component))
+    this.setState(createState(this.props.propTypes, state, component))
   },
 
   render() {
