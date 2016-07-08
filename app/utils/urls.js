@@ -21,7 +21,7 @@ const childRoutes = specs.map(({group, pageName, notesRef, component, propTypes,
       propTypes={propTypes}
       notes={note}
       presets={presets}
-      Component={components[component]} />
+      Component={components[component] || null} />
   }
 
   return {
