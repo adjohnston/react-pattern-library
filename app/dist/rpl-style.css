@@ -1,0 +1,9 @@
+.rpl-gutter {
+  padding: 0 1rem; }
+
+.rpl-container {
+  display: flex;
+  padding: 0 .5rem; }
+  .rpl-container__span {
+    flex: 1 0 0%;
+    padding: 0 .5rem; }
