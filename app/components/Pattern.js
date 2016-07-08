@@ -56,8 +56,18 @@ const Pattern = createClass({
         handleUpdatePreset={this.handleUpdatePreset} />
     ) || null
 
+    const PropTypesPresetsWrapperComponent = (PropTypesComponent ||
+      PresetsComponent) && (
+        <div
+          className="rpl-container__span">
+          {PropTypesComponent}
+          {PresetsComponent}
+        </div>
+    ) || null
+
     const NotesComponent = notes && (
-      <div>
+      <div
+        className="rpl-container__span">
         <h2>Notes</h2>
 
         <ReactMarkdown
@@ -67,15 +77,23 @@ const Pattern = createClass({
 
     return (
       <div>
-        <h1>
+        <h1
+          className="rpl-gutter">
           {patternName}
         </h1>
 
-        {this.renderComponent(Component, this.state)}
+        <div
+          className="rpl-gutter">
+          {this.renderComponent(Component, this.state)}
 
-        {PropTypesComponent}
-        {PresetsComponent}
-        {NotesComponent}
+          <hr />
+        </div>
+
+        <section
+          className="rpl-container">
+          {PropTypesPresetsWrapperComponent}
+          {NotesComponent}
+        </section>
       </div>
     )
   }
