@@ -18,15 +18,18 @@ const getFileNameFromPath = () => {
   }
 }()
 
-//    getComponent : string -> promise
-const getComponent = path => {
+//    cloneComponent : string -> promise
+const cloneComponent = path => {
   return new Promise((res, rej) => {
-    const componentsPath = `copied-components/${path}`
+    const clonePath = `clones/${path}`
 
-    fs.copy(path, componentsPath, (err) => {
+    fs.copy(path, clonePath, (err) => {
       if (err) rej(err)
 
-      res(componentsPath)
+      res(clonePath)
+    })
+  })
+}
 
 const cloneFile = file => {
   fs.readFile(file, 'utf8', (err, data) => {
@@ -57,7 +60,7 @@ const getNote = path => new Promise((res, rej) => {
 })
 
 const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
-  Promise.all(paths.map(path => getComponent(path)))
+  Promise.all(paths.map(path => cloneComponent(path)))
     .then(paths => {
       fs.writeFile(`${__dirname}/app/components.js`, `
         ${paths.map(path => {
