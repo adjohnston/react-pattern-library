@@ -7,3 +7,5 @@
   .rpl-container__span {
     flex: 1 0 0%;
     padding: 0 .5rem; }
+    .rpl-container__span--auto {
+      flex: 0 0 auto; }

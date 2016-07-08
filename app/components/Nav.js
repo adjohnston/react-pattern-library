@@ -12,7 +12,8 @@ const Nav = ({childRoutes}) => {
   }, {})
 
   return (
-    <nav>
+    <nav
+      className="this.props.className">
       <ul>
         {Object.keys(groups).map((group, i) => {
           return (

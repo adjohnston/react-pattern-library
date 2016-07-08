@@ -9,6 +9,10 @@
     &__span {
       flex: 1 0 0%;
       padding: 0 .5rem;
+
+      &--auto {
+        flex: 0 0 auto;
+      }
     }
   }
 }
