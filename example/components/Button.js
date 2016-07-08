@@ -10,11 +10,15 @@ const Button = createClass({
   render() {
     return (
       <button
-        onClick={this.props.onClick}
+        onClick={this.handleOnClick}
         className={this.props.className}>
-        {this.state.counter}
+        {this.props.children} + {this.state.counter}
       </button>
     )
+  },
+
+  handleOnClick() {
+    this.setState({counter: this.state.counter + 1})
   }
 })
 
