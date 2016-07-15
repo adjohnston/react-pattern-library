@@ -25,7 +25,7 @@ const getFileNameFromPath = () => {
 //    cloneComponent : string -> promise
 const cloneComponent = path => {
   return new Promise((res, rej) => {
-    const clonePath = `clones/${path}`
+    const clonePath = `clones/${getFileNameFromPath(path)}.js`
 
     fs.copy(path, clonePath, (err) => {
       if (err) rej(err)
@@ -66,12 +66,17 @@ const getNote = path => new Promise((res, rej) => {
 const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
   Promise.all(paths.map(path => cloneComponent(path)))
     .then(paths => {
+      const componentName = (path) => camelcase(getFileNameFromPath(path))
+      const cleanList = []
+
+      paths.map(path => _.includes(cleanList, path) ? null : cleanList.push(path))
+
       fs.writeFile(`${__dirname}/app/components.js`, `
-        ${paths.map(path => {
-          return `import ${getFileNameFromPath(path)} from '${path}'`
+        ${cleanList.map(path => {
+          return `import ${componentName(path)} from '${path}'`
         }).join('\n\t\t')}
         const components = {
-          ${paths.map(path => getFileNameFromPath(path))}
+          ${cleanList.map(path => componentName(path))}
         }
         export default components`)
     }).catch(err => console.log(err))
