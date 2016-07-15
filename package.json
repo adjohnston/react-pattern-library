@@ -27,6 +27,7 @@
     "lodash": "^4.13.1",
     "minimist": "^1.2.0",
     "node-sass": "^3.8.0",
+    "shelljs": "^0.7.0",
     "tape": "^4.5.1"
   },
   "jspm": {
