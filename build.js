@@ -8,6 +8,7 @@ const args = require('minimist')(process.argv.splice(2))
 const compDir = args.components
 const storyDir = args.stories
 const styleFile = args.styles
+const deps = args.deps
 
 //    getFileNameFromPath : string -> string
 const getFileNameFromPath = () => {
@@ -101,3 +102,16 @@ const getNotes = glob(`${storyDir}**/*.md`).then(paths => {
 })
 
 getStyles()
+const installDeps = deps => {
+  shell.exec('npm prune')
+
+  fs.readFile(deps, 'utf8', (err, data) => {
+    if (err) throw err
+
+    JSON
+      .parse(data)
+      .forEach(dep => shell.exec(`npm install ${dep}`))
+  })
+}
+
+installDeps(deps)
