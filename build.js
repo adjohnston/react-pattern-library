@@ -1,5 +1,7 @@
+const _ = require('lodash')
 const fs = require('fs-extra')
 const glob = require('globby')
+const camelcase = require('camelcase')
 const args = require('minimist')(process.argv.splice(2))
 
 const compDir = args.components
