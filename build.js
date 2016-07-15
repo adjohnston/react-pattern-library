@@ -35,11 +35,11 @@ const cloneComponent = path => {
   })
 }
 
-const cloneFile = file => {
+const cloneFile = (file, dir) => {
   fs.readFile(file, 'utf8', (err, data) => {
     if (err) return err
 
-    fs.outputFile('clones/styles/cloned-styles.css', data, err => {
+    fs.outputFile(dir, data, err => {
       if (err) return err
     })
   })
@@ -77,8 +77,8 @@ const getComponents = glob(`${compDir}**/*.js*`).then(paths => {
     }).catch(err => console.log(err))
 })
 
-const getStyles = () => {
-  cloneFile(styleFile)
+const getStyles = (styleFile, dir) => {
+  cloneFile(styleFile, dir)
 }
 
 const getSpecs = glob(`${storyDir}**/*.js`).then(paths => {
@@ -101,7 +101,6 @@ const getNotes = glob(`${storyDir}**/*.md`).then(paths => {
     })
 })
 
-getStyles()
 const installDeps = deps => {
   shell.exec('npm prune')
 
@@ -115,3 +114,4 @@ const installDeps = deps => {
 }
 
 installDeps(deps)
+getStyles(styleFile, 'clones/styles/cloned-styles.css')
