@@ -1,0 +1,19 @@
+{
+  "name": "react-pattern-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adjohnston/react-pattern-library.git"
+  },
+  "author": "Adam Johnston",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adjohnston/react-pattern-library/issues"
+  },
+  "homepage": "https://github.com/adjohnston/react-pattern-library#readme"
+}
